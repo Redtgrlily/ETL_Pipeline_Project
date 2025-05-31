@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: etl_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  airflow:
+    build: ./airflow
+    container_name: airflow
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/etl_db
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+    command: bash -c "airflow db init && airflow users create --username airflow --password airflow --firstname Airflow --lastname Admin --role Admin --email admin@example.com && airflow webserver & airflow scheduler"
+
+volumes:
+  postgres_data:
