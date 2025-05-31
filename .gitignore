@@ -1,0 +1,71 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Airflow
+airflow/airflow.db
+airflow/logs/
+airflow/__pycache__/
+
+# Docker
+docker-compose.override.yml
+*.log
+*.pid
+*.pid.lock
+
+# Docker volumes and runtime data (don’t commit containers, images, volumes)
+**/postgres_data/
+**/pgdata/
+**/data/
+
+# PostgreSQL data directory (if local and accidentally added)
+pgdata/
+*.sql~
+
+# Environment files with secrets or configs
+.env
+.env.*
+
+# VS Code / IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS system files
+.DS_Store
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# PyCharm
+*.iml
+.idea/
+
+# Ignore Python egg info
+*.egg-info/
+.eggs/
+
+# Ignore test outputs
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Ignore pylint reports
+pylint-report.txt
+pylint-output.txt
